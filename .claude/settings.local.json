@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree:*)",
+      "Bash(cat:*)",
+      "Bash(npm test)",
+      "Bash(npm run test:*)",
+      "Bash(curl:*)",
+      "Bash(HEADLESS=false npm run test:headed)",
+      "Bash(npx playwright codegen:*)",
+      "WebFetch(domain:dev.usewafra.com)",
+      "Bash(node:*)",
+      "Bash(export HEADLESS=false)",
+      "Bash(mv:*)",
+      "Bash(npx playwright test:*)",
+      "Bash(rm:*)",
+      "Bash(tee:*)",
+      "Bash(HEADLESS=false npx playwright test tests/complete-flow.spec.ts)",
+      "Bash(timeout 30 npx playwright test:*)",
+      "Bash(timeout:*)",
+      "Bash(find:*)",
+      "Bash(npm install)",
+      "Bash(echo:*)",
+      "Bash(.gitignore)",
+      "Bash(npm run build:*)",
+      "Bash(npm run dev:*)",
+      "Bash(lsof:*)",
+      "Bash(xargs kill:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

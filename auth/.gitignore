@@ -1,0 +1,5 @@
+# Ignore authentication state files (contains sensitive cookies/tokens)
+storageState.json
+
+# Keep this directory structure in git
+!.gitignore

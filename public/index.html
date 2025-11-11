@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mobile Visual Regression Testing</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>📱 Mobile Visual Regression Testing</h1>
+      <p>Compare Figma designs with mobile app screenshots</p>
+      <nav>
+        <a href="/">Upload</a>
+        <a href="/history">History</a>
+      </nav>
+    </header>
+
+    <main>
+      <form id="uploadForm" class="upload-form">
+        <div class="form-group">
+          <label for="projectName">Project Name *</label>
+          <input
+            type="text"
+            id="projectName"
+            name="projectName"
+            placeholder="My Mobile App"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="devicePreset">Device Preset (Optional)</label>
+          <select id="devicePreset" name="devicePreset">
+            <option value="">None - Compare as-is</option>
+            <optgroup label="iPhone">
+              <option value="iphone-14-pro-max">iPhone 14 Pro Max (430x932)</option>
+              <option value="iphone-14-pro">iPhone 14 Pro (393x852)</option>
+              <option value="iphone-14">iPhone 14 (390x844)</option>
+              <option value="iphone-13">iPhone 13 (390x844)</option>
+              <option value="iphone-se-3rd">iPhone SE 3rd Gen (375x667)</option>
+            </optgroup>
+            <optgroup label="Android">
+              <option value="pixel-7-pro">Google Pixel 7 Pro (412x915)</option>
+              <option value="pixel-7">Google Pixel 7 (412x915)</option>
+              <option value="samsung-s23-ultra">Samsung S23 Ultra (360x800)</option>
+              <option value="samsung-s23">Samsung S23 (360x780)</option>
+              <option value="oneplus-10-pro">OnePlus 10 Pro (412x919)</option>
+            </optgroup>
+            <optgroup label="Tablet">
+              <option value="ipad-pro-12.9">iPad Pro 12.9" (1024x1366)</option>
+              <option value="ipad-air">iPad Air (820x1180)</option>
+            </optgroup>
+          </select>
+          <small>Select a device to auto-crop status bar and navigation elements</small>
+        </div>
+
+        <div class="form-group">
+          <label for="threshold">Comparison Threshold</label>
+          <div class="slider-container">
+            <input
+              type="range"
+              id="threshold"
+              name="threshold"
+              min="0"
+              max="0.2"
+              step="0.01"
+              value="0.05"
+            >
+            <span id="thresholdValue">5.0%</span>
+          </div>
+          <small>How much difference to tolerate before marking as failed</small>
+        </div>
+
+        <div class="upload-section">
+          <div class="upload-column">
+            <h3>Figma Design Images</h3>
+            <div class="drop-zone" id="designDropZone">
+              <div class="drop-zone-content">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+                </svg>
+                <p>Drag & drop design images here</p>
+                <p class="or">or</p>
+                <button type="button" class="btn-secondary" onclick="document.getElementById('designInput').click()">
+                  Browse Files
+                </button>
+                <input
+                  type="file"
+                  id="designInput"
+                  name="designs"
+                  multiple
+                  accept="image/png,image/jpeg,image/jpg,image/webp"
+                  hidden
+                >
+              </div>
+            </div>
+            <div id="designPreview" class="file-preview"></div>
+          </div>
+
+          <div class="upload-column">
+            <h3>Mobile Screenshots</h3>
+            <div class="drop-zone" id="screenshotDropZone">
+              <div class="drop-zone-content">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+                </svg>
+                <p>Drag & drop screenshots here</p>
+                <p class="or">or</p>
+                <button type="button" class="btn-secondary" onclick="document.getElementById('screenshotInput').click()">
+                  Browse Files
+                </button>
+                <input
+                  type="file"
+                  id="screenshotInput"
+                  name="screenshots"
+                  multiple
+                  accept="image/png,image/jpeg,image/jpg,image/webp"
+                  hidden
+                >
+              </div>
+            </div>
+            <div id="screenshotPreview" class="file-preview"></div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" id="submitBtn" class="btn-primary" disabled>
+            Start Comparison
+          </button>
+          <button type="button" id="clearBtn" class="btn-secondary">
+            Clear All
+          </button>
+        </div>
+      </form>
+
+      <div id="progressSection" class="progress-section hidden">
+        <h3>Processing Comparison...</h3>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <p id="progressText">Uploading files...</p>
+      </div>
+    </main>
+
+    <footer>
+      <p>Mobile Visual Regression Testing v3.0.0</p>
+    </footer>
+  </div>
+
+  <script src="/js/upload.js"></script>
+</body>
+</html>

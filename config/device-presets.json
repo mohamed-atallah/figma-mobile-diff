@@ -1,0 +1,367 @@
+{
+  "devices": [
+    {
+      "id": "iphone-14-pro-max",
+      "name": "iPhone 14 Pro Max",
+      "platform": "iOS",
+      "screen": {
+        "width": 430,
+        "height": 932,
+        "pixelRatio": 3
+      },
+      "safeAreas": {
+        "top": 59,
+        "bottom": 34,
+        "left": 0,
+        "right": 0
+      },
+      "cropRegions": [
+        {
+          "name": "Status Bar (Dynamic Island)",
+          "x": 0,
+          "y": 0,
+          "width": 430,
+          "height": 54
+        },
+        {
+          "name": "Home Indicator",
+          "x": 0,
+          "y": 898,
+          "width": 430,
+          "height": 34
+        }
+      ]
+    },
+    {
+      "id": "iphone-14-pro",
+      "name": "iPhone 14 Pro",
+      "platform": "iOS",
+      "screen": {
+        "width": 393,
+        "height": 852,
+        "pixelRatio": 3
+      },
+      "safeAreas": {
+        "top": 59,
+        "bottom": 34,
+        "left": 0,
+        "right": 0
+      },
+      "cropRegions": [
+        {
+          "name": "Status Bar (Dynamic Island)",
+          "x": 0,
+          "y": 0,
+          "width": 393,
+          "height": 54
+        },
+        {
+          "name": "Home Indicator",
+          "x": 0,
+          "y": 818,
+          "width": 393,
+          "height": 34
+        }
+      ]
+    },
+    {
+      "id": "iphone-14",
+      "name": "iPhone 14",
+      "platform": "iOS",
+      "screen": {
+        "width": 390,
+        "height": 844,
+        "pixelRatio": 3
+      },
+      "safeAreas": {
+        "top": 47,
+        "bottom": 34,
+        "left": 0,
+        "right": 0
+      },
+      "cropRegions": [
+        {
+          "name": "Status Bar (Notch)",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 47
+        },
+        {
+          "name": "Home Indicator",
+          "x": 0,
+          "y": 810,
+          "width": 390,
+          "height": 34
+        }
+      ]
+    },
+    {
+      "id": "iphone-13",
+      "name": "iPhone 13",
+      "platform": "iOS",
+      "screen": {
+        "width": 390,
+        "height": 844,
+        "pixelRatio": 3
+      },
+      "safeAreas": {
+        "top": 47,
+        "bottom": 34,
+        "left": 0,
+        "right": 0
+      },
+      "cropRegions": [
+        {
+          "name": "Status Bar (Notch)",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 47
+        },
+        {
+          "name": "Home Indicator",
+          "x": 0,
+          "y": 810,
+          "width": 390,
+          "height": 34
+        }
+      ]
+    },
+    {
+      "id": "iphone-se-3rd",
+      "name": "iPhone SE (3rd generation)",
+      "platform": "iOS",
+      "screen": {
+        "width": 375,
+        "height": 667,
+        "pixelRatio": 2
+      },
+      "safeAreas": {
+        "top": 20,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "cropRegions": [
+        {
+          "name": "Status Bar",
+          "x": 0,
+          "y": 0,
+          "width": 375,
+          "height": 20
+        }
+      ]
+    },
+    {
+      "id": "pixel-7-pro",
+      "name": "Google Pixel 7 Pro",
+      "platform": "Android",
+      "screen": {
+        "width": 412,
+        "height": 915,
+        "pixelRatio": 3.5
+      },
+      "safeAreas": {
+        "top": 24,
+        "bottom": 48,
+        "left": 0,
+        "right": 0
+      },
+      "cropRegions": [
+        {
+          "name": "Status Bar",
+          "x": 0,
+          "y": 0,
+          "width": 412,
+          "height": 24
+        },
+        {
+          "name": "Navigation Bar",
+          "x": 0,
+          "y": 867,
+          "width": 412,
+          "height": 48
+        }
+      ]
+    },
+    {
+      "id": "pixel-7",
+      "name": "Google Pixel 7",
+      "platform": "Android",
+      "screen": {
+        "width": 412,
+        "height": 915,
+        "pixelRatio": 2.625
+      },
+      "safeAreas": {
+        "top": 24,
+        "bottom": 48,
+        "left": 0,
+        "right": 0
+      },
+      "cropRegions": [
+        {
+          "name": "Status Bar",
+          "x": 0,
+          "y": 0,
+          "width": 412,
+          "height": 24
+        },
+        {
+          "name": "Navigation Bar",
+          "x": 0,
+          "y": 867,
+          "width": 412,
+          "height": 48
+        }
+      ]
+    },
+    {
+      "id": "samsung-s23-ultra",
+      "name": "Samsung Galaxy S23 Ultra",
+      "platform": "Android",
+      "screen": {
+        "width": 360,
+        "height": 800,
+        "pixelRatio": 4
+      },
+      "safeAreas": {
+        "top": 24,
+        "bottom": 48,
+        "left": 0,
+        "right": 0
+      },
+      "cropRegions": [
+        {
+          "name": "Status Bar",
+          "x": 0,
+          "y": 0,
+          "width": 360,
+          "height": 24
+        },
+        {
+          "name": "Navigation Bar",
+          "x": 0,
+          "y": 752,
+          "width": 360,
+          "height": 48
+        }
+      ]
+    },
+    {
+      "id": "samsung-s23",
+      "name": "Samsung Galaxy S23",
+      "platform": "Android",
+      "screen": {
+        "width": 360,
+        "height": 780,
+        "pixelRatio": 3
+      },
+      "safeAreas": {
+        "top": 24,
+        "bottom": 48,
+        "left": 0,
+        "right": 0
+      },
+      "cropRegions": [
+        {
+          "name": "Status Bar",
+          "x": 0,
+          "y": 0,
+          "width": 360,
+          "height": 24
+        },
+        {
+          "name": "Navigation Bar",
+          "x": 0,
+          "y": 732,
+          "width": 360,
+          "height": 48
+        }
+      ]
+    },
+    {
+      "id": "oneplus-10-pro",
+      "name": "OnePlus 10 Pro",
+      "platform": "Android",
+      "screen": {
+        "width": 412,
+        "height": 919,
+        "pixelRatio": 3.5
+      },
+      "safeAreas": {
+        "top": 24,
+        "bottom": 48,
+        "left": 0,
+        "right": 0
+      },
+      "cropRegions": [
+        {
+          "name": "Status Bar",
+          "x": 0,
+          "y": 0,
+          "width": 412,
+          "height": 24
+        },
+        {
+          "name": "Navigation Bar",
+          "x": 0,
+          "y": 871,
+          "width": 412,
+          "height": 48
+        }
+      ]
+    },
+    {
+      "id": "ipad-pro-12.9",
+      "name": "iPad Pro 12.9\"",
+      "platform": "iOS",
+      "screen": {
+        "width": 1024,
+        "height": 1366,
+        "pixelRatio": 2
+      },
+      "safeAreas": {
+        "top": 24,
+        "bottom": 20,
+        "left": 0,
+        "right": 0
+      },
+      "cropRegions": [
+        {
+          "name": "Status Bar",
+          "x": 0,
+          "y": 0,
+          "width": 1024,
+          "height": 24
+        }
+      ]
+    },
+    {
+      "id": "ipad-air",
+      "name": "iPad Air",
+      "platform": "iOS",
+      "screen": {
+        "width": 820,
+        "height": 1180,
+        "pixelRatio": 2
+      },
+      "safeAreas": {
+        "top": 24,
+        "bottom": 20,
+        "left": 0,
+        "right": 0
+      },
+      "cropRegions": [
+        {
+          "name": "Status Bar",
+          "x": 0,
+          "y": 0,
+          "width": 820,
+          "height": 24
+        }
+      ]
+    }
+  ]
+}

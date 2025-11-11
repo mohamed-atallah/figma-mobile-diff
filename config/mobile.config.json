@@ -1,0 +1,32 @@
+{
+  "storage": {
+    "uploadsDir": "storage/uploads",
+    "outputDir": "storage/output",
+    "databaseFile": "storage/database.json",
+    "maxFileSize": "10MB",
+    "allowedFormats": ["png", "jpg", "jpeg", "webp"],
+    "retentionDays": 30
+  },
+  "comparison": {
+    "defaultThreshold": 0.05,
+    "pixelmatchThreshold": 0.1,
+    "diffColor": [255, 0, 0],
+    "antialiasColor": [255, 255, 0]
+  },
+  "server": {
+    "port": 3000,
+    "host": "localhost",
+    "corsEnabled": true
+  },
+  "performance": {
+    "maxConcurrentComparisons": 10,
+    "enableImageCaching": true,
+    "cacheMaxAge": 3600
+  },
+  "features": {
+    "enableDevicePresets": true,
+    "enableCropRegions": true,
+    "enableBatchProcessing": true,
+    "maxBatchSize": 50
+  }
+}
