@@ -12,8 +12,8 @@
       <h1>📱 Mobile Visual Regression Testing</h1>
       <p>Compare Figma designs with mobile app screenshots</p>
       <nav>
-        <a href="/">Upload</a>
-        <a href="/history">History</a>
+        <a href="/" class="active">Upload</a>
+        <a href="/history.html">History</a>
       </nav>
     </header>
 
@@ -71,6 +71,19 @@
             <span id="thresholdValue">5.0%</span>
           </div>
           <small>How much difference to tolerate before marking as failed</small>
+        </div>
+
+        <div class="form-group">
+          <label class="checkbox-label">
+            <input
+              type="checkbox"
+              id="autoResize"
+              name="autoResize"
+              value="true"
+            >
+            <span>Auto-resize screenshots to match design dimensions</span>
+          </label>
+          <small>Automatically resize screenshots if dimensions don't match design images (recommended for mobile)</small>
         </div>
 
         <div class="upload-section">

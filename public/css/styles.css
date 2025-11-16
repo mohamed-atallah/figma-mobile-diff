@@ -73,6 +73,16 @@ nav a:hover {
   color: var(--primary-color);
 }
 
+nav a.active {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+nav a.active:hover {
+  background: var(--primary-hover);
+}
+
 .upload-form {
   background: var(--card-bg);
   padding: 2rem;
@@ -112,6 +122,26 @@ nav a:hover {
   margin-top: 0.5rem;
   color: var(--text-secondary);
   font-size: 0.875rem;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 1.25rem;
+  height: 1.25rem;
+  cursor: pointer;
+  accent-color: var(--primary-color);
+}
+
+.checkbox-label span {
+  font-weight: 500;
+  color: var(--text-primary);
 }
 
 .slider-container {

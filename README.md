@@ -42,7 +42,7 @@ npm start
 
 ### 3. Open in Browser
 
-Navigate to `http://localhost:3000` in your web browser.
+Navigate to `http://localhost:9000` in your web browser.
 
 ---
 
@@ -109,7 +109,7 @@ Device presets automatically crop:
 Copy `.env.example` to `.env` and customize:
 
 ```env
-PORT=3000                        # Server port
+PORT=9000                        # Server port
 HOST=localhost                   # Server host
 NODE_ENV=development             # Environment
 
@@ -194,6 +194,8 @@ Content-Type: multipart/form-data
 - projectName: string (required)
 - devicePreset: string (optional)
 - threshold: number (optional, 0-1)
+- pixelmatchThreshold: number (optional, 0-1)
+- autoResize: boolean (optional, default: false)
 - designs: file[] (required)
 - screenshots: file[] (required)
 
@@ -204,6 +206,8 @@ Content-Type: multipart/form-data
   "statusUrl": "/api/comparisons/uuid"
 }
 ```
+
+**Auto-Resize Feature**: When `autoResize=true`, screenshots are automatically resized to match the Figma design dimensions if they don't match. This is particularly useful for mobile screenshots where the exact pixel dimensions may vary between devices or simulators.
 
 ### Get Comparison
 
@@ -337,10 +341,10 @@ Set `STORAGE_RETENTION_DAYS=30` in `.env` to automatically delete comparisons ol
 
 ```bash
 # Change port in .env
-PORT=3001
+PORT=9001
 
 # Or kill existing process
-lsof -ti:3000 | xargs kill -9
+lsof -ti:9000 | xargs kill -9
 ```
 
 ---
@@ -370,6 +374,24 @@ adb exec-out screencap -p > ~/Desktop/screenshot.png
 - Use consistent naming: `home-screen-design.png`, `home-screen-actual.png`
 - Match export resolution to device pixel ratio
 - Capture screenshots at same time to avoid time-based differences
+
+### Handling Dimension Mismatches
+
+If your mobile screenshots don't exactly match your Figma design dimensions, you have two options:
+
+1. **Manual Resize**: Re-export your Figma designs or re-capture screenshots at matching dimensions
+2. **Auto-Resize** (Recommended): Use `autoResize=true` when uploading to automatically resize screenshots to match design dimensions
+
+Example with cURL:
+```bash
+curl -X POST http://localhost:9000/api/comparisons \
+  -F "projectName=My App" \
+  -F "autoResize=true" \
+  -F "designs=@design1.png" \
+  -F "screenshots=@screenshot1.png"
+```
+
+The auto-resize feature uses high-quality image scaling to ensure accurate comparisons even when dimensions don't match perfectly.
 
 ---
 

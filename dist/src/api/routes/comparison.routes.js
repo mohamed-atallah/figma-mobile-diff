@@ -11,6 +11,7 @@ const upload_middleware_1 = require("../middleware/upload.middleware");
 const storage_1 = require("../../db/storage");
 const image_compare_1 = require("../../../core/comparison/image-compare");
 const report_generator_1 = require("../../../core/comparison/report-generator");
+const image_resize_1 = require("../../core/mobile/image-resize");
 const router = express_1.default.Router();
 // POST /api/comparisons - Create new comparison with batch upload
 router.post('/', upload_middleware_1.upload.fields([
@@ -21,7 +22,7 @@ router.post('/', upload_middleware_1.upload.fields([
         const files = req.files;
         const designs = files.designs || [];
         const screenshots = files.screenshots || [];
-        const { projectName, devicePreset, threshold, pixelmatchThreshold } = req.body;
+        const { projectName, devicePreset, threshold, pixelmatchThreshold, autoResize } = req.body;
         // Validate project name
         if (!projectName || projectName.trim() === '') {
             return res.status(400).json({
@@ -39,6 +40,7 @@ router.post('/', upload_middleware_1.upload.fields([
         processComparisonPairs(comparison.id, designs, screenshots, {
             threshold: threshold ? parseFloat(threshold) : 0.05,
             pixelmatchThreshold: pixelmatchThreshold ? parseFloat(pixelmatchThreshold) : 0.1,
+            autoResize: autoResize === 'true' || autoResize === true,
         }).catch((error) => {
             console.error('Error processing comparison pairs:', error);
         });
@@ -191,18 +193,40 @@ async function processComparisonPairs(comparisonId, designs, screenshots, option
         const comparisonPath = path_1.default.join(outputDir, `pair-${i + 1}-comparison.png`);
         const reportPath = path_1.default.join(outputDir, `pair-${i + 1}-report.txt`);
         try {
+            let screenshotPath = screenshot.path;
+            // Auto-resize screenshot if enabled and dimensions don't match
+            if (options.autoResize) {
+                const dimensionsMatch = await (0, image_resize_1.haveSameDimensions)(screenshot.path, design.path);
+                if (!dimensionsMatch) {
+                    const [screenshotDims, designDims] = await Promise.all([
+                        (0, image_resize_1.getImageDimensions)(screenshot.path),
+                        (0, image_resize_1.getImageDimensions)(design.path),
+                    ]);
+                    console.log(`Dimension mismatch detected for pair ${i + 1}:\n` +
+                        `  Screenshot: ${screenshotDims.width}x${screenshotDims.height}\n` +
+                        `  Design: ${designDims.width}x${designDims.height}`);
+                    // Create resized copy
+                    const resizedPath = path_1.default.join(outputDir, `pair-${i + 1}-screenshot-resized.png`);
+                    await (0, image_resize_1.resizeToMatchImage)(screenshot.path, design.path, resizedPath, {
+                        fit: 'fill',
+                        background: { r: 255, g: 255, b: 255, alpha: 1 },
+                    });
+                    console.log(`✓ Screenshot resized to match design dimensions`);
+                    screenshotPath = resizedPath;
+                }
+            }
             // Perform comparison
-            const result = await (0, image_compare_1.compareImages)(screenshot.path, design.path, diffPath, {
+            const result = await (0, image_compare_1.compareImages)(screenshotPath, design.path, diffPath, {
                 threshold: options.threshold,
                 pixelmatchThreshold: options.pixelmatchThreshold,
             });
             // Generate side-by-side comparison
-            (0, image_compare_1.generateSideBySideComparison)(screenshot.path, design.path, comparisonPath);
+            (0, image_compare_1.generateSideBySideComparison)(screenshotPath, design.path, comparisonPath);
             // Generate textual report
-            const analysis = (0, report_generator_1.analyzeDiffRegions)(screenshot.path, design.path, diffPath);
+            const analysis = (0, report_generator_1.analyzeDiffRegions)(screenshotPath, design.path, diffPath);
             const issues = (0, report_generator_1.generateIssues)(analysis);
             const reportContent = (0, report_generator_1.generateTextualReport)(`Pair ${i + 1}`, result.mismatchedPixels, result.totalPixels, result.diffPercentage, result.passed, analysis, issues, {
-                actual: screenshot.path,
+                actual: screenshotPath,
                 expected: design.path,
                 diff: diffPath,
                 comparison: comparisonPath,
@@ -212,7 +236,7 @@ async function processComparisonPairs(comparisonId, designs, screenshots, option
             const pair = {
                 id: pairId,
                 designPath: design.path,
-                screenshotPath: screenshot.path,
+                screenshotPath: screenshotPath, // Use resized path if available
                 diffPath,
                 comparisonPath,
                 reportPath,

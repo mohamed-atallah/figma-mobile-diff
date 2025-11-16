@@ -69,14 +69,6 @@ function setupDropZone(dropZone, callback) {
     );
     callback(files);
   });
-
-  dropZone.addEventListener('click', () => {
-    if (dropZone.id === 'designDropZone') {
-      designInput.click();
-    } else {
-      screenshotInput.click();
-    }
-  });
 }
 
 function handleFiles(files, type) {
@@ -164,6 +156,7 @@ async function handleSubmit(e) {
   const projectName = document.getElementById('projectName').value.trim();
   const devicePreset = document.getElementById('devicePreset').value;
   const threshold = thresholdInput.value;
+  const autoResize = document.getElementById('autoResize').checked;
 
   if (!projectName) {
     alert('Please enter a project name');
@@ -184,6 +177,7 @@ async function handleSubmit(e) {
   const formData = new FormData();
   formData.append('projectName', projectName);
   formData.append('threshold', threshold);
+  formData.append('autoResize', autoResize);
 
   if (devicePreset) {
     formData.append('devicePreset', devicePreset);
